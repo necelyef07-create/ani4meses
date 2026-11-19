@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4 Meses Juntos 💜🩵 | Nuestro Universo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-light: #e9d5ff;
+      --purple-mid: #a855f7;
+      --purple-deep: #7e22ce;
+      --sky-light: #e0f2fe;
+      --sky-mid: #38bdf8;
+      --sky-deep: #0284c7;
+      --white: #ffffff;
+      --text-main: #2e1065;
+      --text-muted: #5b21b6;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --shadow-soft: 0 12px 32px rgba(126, 34, 206, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(135deg, #f3e8ff 0%, #e0f2fe 45%, #ffffff 75%, #ede9fe 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 5rem;
+    }
+
+    /* Decoración sutil de telarañas en esquinas */
+    .web-corner {
+      position: fixed;
+      width: 190px;
+      height: 190px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.28;
+    }
+    .web-top-left {
+      top: 0;
+      left: 0;
+    }
+    .web-top-right {
+      top: 0;
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    /* Arañita balanceándose */
+    .spider-swing {
+      position: fixed;
+      top: 0;
+      right: 36px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+      transform-origin: top center;
+      animation: swing 4s ease-in-out infinite;
+    }
+    .spider-thread {
+      width: 2px;
+      height: 75px;
+      background: linear-gradient(to bottom, rgba(168, 85, 247, 0.4), rgba(56, 189, 248, 0.8));
+    }
+    @keyframes swing {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    /* Partículas flotantes */
+    #particles-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      bottom: -30px;
+      animation: floatUp linear forwards;
+      opacity: 0.65;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.7; }
+      85% { opacity: 0.7; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Encabezado Hero */
+    header.hero {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 2rem;
+    }
+
+    .badge-spidey {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(90deg, var(--purple-mid), var(--sky-mid));
+      color: var(--white);
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.4px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      background: linear-gradient(135deg, var(--purple-deep), var(--sky-deep));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.6rem;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.6;
+    }
+
+    /* Indicador de amor a distancia */
+    .distance-bridge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto 1.8rem;
+      padding: 0.7rem 1.2rem;
+      background: linear-gradient(90deg, rgba(233, 213, 255, 0.5), rgba(224, 242, 254, 0.5));
+      border-radius: 20px;
+      border: 1px dashed var(--purple-mid);
+    }
+    .node-heart {
+      font-size: 1.4rem;
+      animation: pulse 1.8s infinite;
+    }
+    .web-line {
+      flex: 1;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--purple-mid),
+        var(--purple-mid) 6px,
+        var(--sky-mid) 6px,
+        var(--sky-mid) 12px
+      );
+      border-radius: 4px;
+      position: relative;
+    }
+    .distance-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple-deep);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    /* Contador en vivo */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .time-box {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 1rem 0.5rem;
+      box-shadow: 0 6px 18px rgba(56, 189, 248, 0.14);
+      border: 2px solid var(--sky-light);
+    }
+    .time-number {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      font-weight: 700;
+      color: var(--purple-deep);
+      display: block;
+    }
+    .time-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+      letter-spacing: 0.8px;
+    }
+    .date-origin {
+      margin-top: 1rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Secciones generales */
+    section.card-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      border: 2px solid var(--white);
+      box-shadow: var(--shadow-soft);
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+    .section-header h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.75rem;
+      color: var(--purple-deep);
+      margin-bottom: 0.35rem;
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* Sobre de Carta */
+    .envelope-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple-mid), var(--sky-mid));
+      color: var(--white);
+      border: none;
+      padding: 0.85rem 1.7rem;
+      border-radius: 999px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.28);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(56, 189, 248, 0.35);
+    }
+
+    .letter-paper {
+      display: none;
+      margin-top: 1.5rem;
+      background: var(--white);
+      border-radius: 22px;
+      padding: 1.8rem;
+      text-align: left;
+      border: 2px dashed var(--sky-mid);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 0.45s ease;
+    }
+    .letter-paper.open {
+      display: block;
+    }
+    .letter-content {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-main);
+    }
+
+    /* Galería Polaroid (5 fotos de pequeño) */
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 1.25rem;
+    }
+    .polaroid {
+      background: var(--white);
+      padding: 0.75rem 0.75rem 1.2rem;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(126, 34, 206, 0.12);
+      border: 1px solid var(--purple-light);
+      text-align: center;
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+    .polaroid:nth-child(odd) { transform: rotate(-1.5deg); }
+    .polaroid:nth-child(even) { transform: rotate(1.5deg); }
+    .polaroid:hover {
+      transform: scale(1.04) rotate(0deg);
+      z-index: 3;
+    }
+    .photo-slot {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, var(--purple-light), var(--sky-light));
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      color: var(--purple-deep);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .polaroid-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      color: var(--purple-deep);
+      margin-top: 0.65rem;
+    }
+
+    /* Rincón Musical (Bonsái + Tu Playlist) */
+    .bonsai-highlight {
+      background: linear-gradient(135deg, rgba(233, 213, 255, 0.65), rgba(224, 242, 254, 0.75));
+      border-radius: 22px;
+      padding: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.6rem;
+      border: 2px solid var(--white);
+      flex-wrap: wrap;
+    }
+    .vinyl-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--white) 16%, var(--purple-mid) 18%, var(--purple-deep) 60%, var(--sky-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      animation: spinSlow 10s linear infinite;
+      box-shadow: 0 6px 16px rgba(126, 34, 206, 0.25);
+    }
+    @keyframes spinSlow {
+      100% { transform: rotate(360deg); }
+    }
+    .bonsai-text h3 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--purple-deep);
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    .bonsai-text p {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .playlist-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .song-item {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1.5px solid var(--sky-light);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .song-info strong {
+      color: var(--purple-deep);
+      font-size: 1rem;
+      display: block;
+    }
+    .song-info span {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .song-link {
+      background: var(--purple-light);
+      color: var(--purple-deep);
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Retos y Misiones en Roblox */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.3rem;
+    }
+    .tab-btn {
+      background: var(--white);
+      color: var(--purple-deep);
+      border: 1.5px solid var(--purple-light);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--purple-mid), var(--sky-mid));
+      color: var(--white);
+      border-color: transparent;
+    }
+
+    .mission-card {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 1.6rem;
+      text-align: center;
+      border: 2px solid var(--sky-mid);
+      max-width: 560px;
+      margin: 0 auto;
+      box-shadow: 0 10px 24px rgba(56, 189, 248, 0.16);
+    }
+    .mission-tag {
+      display: inline-block;
+      background: var(--sky-light);
+      color: var(--sky-deep);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.7rem;
+    }
+    .mission-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.35rem;
+      color: var(--purple-deep);
+      margin-bottom: 0.5rem;
+    }
+    .mission-desc {
+      font-size: 0.98rem;
+      color: var(--text-main);
+      margin-bottom: 1.1rem;
+      line-height: 1.5;
+    }
+    .mission-controls {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .btn-complete {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1.5px solid #86efac;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-complete.done {
+      background: #16a34a;
+      color: var(--white);
+    }
+
+    /* Botones flotantes */
+    .floating-tools {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      display: flex;
+      gap: 0.6rem;
+      z-index: 20;
+    }
+    .fab {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      background: linear-gradient(135deg, var(--purple-mid), var(--sky-mid));
+      color: var(--white);
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(126, 34, 206, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 680px) {
+      .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Telarañas decorativas en las esquinas -->
+  <svg class="web-corner web-top-left" viewBox="0 0 200 200" fill="none" stroke="#9333ea" stroke-width="1.5">
+    <path d="M0 0 L200 0 M0 0 L185 75 M0 0 L145 145 M0 0 L75 185 M0 0 L0 200" />
+    <path d="M40 0 Q35 20 37 15 Q25 32 15 37 Q10 38 0 40" />
+    <path d="M85 0 Q75 40 78 32 Q55 65 32 78 Q20 80 0 85" />
+    <path d="M135 0 Q120 62 124 50 Q88 102 50 124 Q32 130 0 135" />
+    <path d="M185 0 Q165 85 170 70 Q120 140 70 170 Q45 178 0 185" />
+  </svg>
+  <svg class="web-corner web-top-right" viewBox="0 0 200 200" fill="none" stroke="#0284c7" stroke-width="1.5">
+    <path d="M0 0 L200 0 M0 0 L185 75 M0 0 L145 145 M0 0 L75 185 M0 0 L0 200" />
+    <path d="M40 0 Q35 20 37 15 Q25 32 15 37 Q10 38 0 40" />
+    <path d="M85 0 Q75 40 78 32 Q55 65 32 78 Q20 80 0 85" />
+    <path d="M135 0 Q120 62 124 50 Q88 102 50 124 Q32 130 0 135" />
+    <path d="M185 0 Q165 85 170 70 Q120 140 70 170 Q45 178 0 185" />
+  </svg>
+
+  <!-- Arañita morada y celeste balanceándose -->
+  <div class="spider-swing" title="Tu sentido arácnido favorito">
+    <div class="spider-thread"></div>
+    <svg width="34" height="34" viewBox="0 0 64 64">
+      <circle cx="32" cy="36" r="13" fill="#7e22ce"/>
+      <circle cx="32" cy="21" r="8" fill="#38bdf8"/>
+      <circle cx="29" cy="19" r="2.2" fill="#ffffff"/>
+      <circle cx="35" cy="19" r="2.2" fill="#ffffff"/>
+      <path d="M20 30 Q8 22 6 14 M19 36 Q6 36 4 44 M21 42 Q10 50 10 58" stroke="#7e22ce" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M44 30 Q56 22 58 14 M45 36 Q58 36 60 44 M43 42 Q54 50 54 58" stroke="#0284c7" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Partículas flotantes -->
+  <div id="particles-container"></div>
+
+  <div class="container">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="badge-spidey">🕷️💜 Felices 4 Meses Mi Chico Araña 💜🕷️</div>
+      <h1>4 Meses estando a tu lado...</h1>
+      <p class="subtitle">
+        Gracias por haber dado el paso aquel <strong>18 de julio de 2026</strong>. Aunque estemos a distancia, cada llamada, cada partida y cada canción contigo se siente como estar justo a tu lado.
+      </p>
+
+      <div class="distance-bridge">
+        <span class="node-heart">💜</span>
+        <div class="web-line"></div>
+        <span class="distance-label">Conectados sin importar los kilómetros</span>
+        <div class="web-line"></div>
+        <span class="node-heart">💜</span>
+      </div>
+
+      <div class="countdown-grid">
+        <div class="time-box">
+          <span class="time-number" id="days">124</span>
+          <span class="time-label">Días</span>
+        </div>
+        <div class="time-box">
+          <span class="time-number" id="hours">00</span>
+          <span class="time-label">Horas</span>
+        </div>
+        <div class="time-box">
+          <span class="time-number" id="minutes">00</span>
+          <span class="time-label">Minutos</span>
+        </div>
+        <div class="time-box">
+          <span class="time-number" id="seconds">00</span>
+          <span class="time-label">Segundos</span>
+        </div>
+      </div>
+      <div class="date-origin">✨ Nuestra historia oficial comenzó el 18 / 07 / 2026 ✨</div>
+    </header>
+
+    <!-- CARTA DE ANIVERSARIO (SOLO LECTURA) -->
+    <section class="card-section">
+      <div class="section-header">
+        <h2>💌 Una Carta Para Ti</h2>
+        <p>Toca el botón para abrir lo que siento por ti en estos 4 meses</p>
+      </div>
+      <div class="envelope-wrapper">
+        <button class="btn-primary" id="toggle-letter-btn">Abrir mi carta 💜</button>
+        <div class="letter-paper" id="letter-paper">
+          <div class="letter-content">
+            Amor mío,<br><br>
+            Hoy cumplimos 4 meses desde aquel 18 de julio de 2026 en el que tuviste la valentía y el detalle tan lindo de pedirme que fuéramos pareja. Nunca voy a olvidar ese momento porque cambió mis días por completo.<br><br>
+            Sé que la distancia a veces nos pone pruebas, pero contigo todo vale la pena. Me encanta escucharte tocar la guitarra, guardar en mi corazón canciones como "Bonsái" porque me recuerdan a ti, y pasar horas jugando juntos como el mejor dúo.<br><br>
+            Gracias por ser mi héroe favorito, mi compañero de aventuras y la persona más tierna del mundo. ¡Vamos por muchos meses más!<br><br>
+            Con todo mi amor, tu novia Necely 💜💜💜💜
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA DE PEQUEÑO (5 FOTOS FIJAS) -->
+    <section class="card-section">
+      <div class="section-header">
+        <h2>📸 De Pequeñito a Robarme el Corazón</h2>
+        <p>Un pequeño recorrido por lo tierno que eras desde niño</p>
+      </div>
+      <div class="polaroid-grid" id="polaroid-grid"></div>
+    </section>
+
+    <!-- RINCÓN MUSICAL: BONSÁI + TU PLAYLIST (SOLO LECTURA) -->
+    <section class="card-section">
+      <div class="section-header">
+        <h2>🎸 Nuestro Rincón Musical</h2>
+        <p>Para el guitarrista más talentoso, con toda la música que me hace pensar en ti</p>
+      </div>
+
+      <div class="bonsai-highlight">
+        <div class="vinyl-icon">🎵</div>
+        <div class="bonsai-text">
+          <h3>🌱 "Bonsái" — La canción que me dedicaste</h3>
+          <p>
+            Cada vez que suena <strong>Bonsái</strong> o te escucho tocar las cuerdas de tu guitarra, siento que estás aquí conmigo. Ahora me toca a mí regalarte esta playlist con todas las canciones que tienen tu nombre en mi mente.
+          </p>
+        </div>
+      </div>
+
+      <div class="playlist-list" id="playlist-list"></div>
+    </section>
+
+    <!-- RETOS Y MISIONES EN ROBLOX -->
+    <section class="card-section">
+      <div class="section-header">
+        <h2>🎮 Misiones de Dúo en Roblox</h2>
+        <p>Como estamos a distancia, cambiamos los cupones por retos épicos para jugar juntos</p>
+      </div>
+
+      <div class="filter-tabs" id="roblox-tabs">
+        <button class="tab-btn active" data-cat="todos">Todos los retos</button>
+        <button class="tab-btn" data-cat="violencia">⚔️ Distrito de Violencia</button>
+        <button class="tab-btn" data-cat="supervivencia">🏕️ Supervivencia</button>
+        <button class="tab-btn" data-cat="duos">🏆 Competencia & Dúos</button>
+      </div>
+
+      <div class="mission-card">
+        <span class="mission-tag" id="mission-category">⚔️ Distrito de Violencia</span>
+        <h3 class="mission-title" id="mission-title">Escondidas</h3>
+        <p class="mission-desc" id="mission-desc">
+          El que dura mas tiempo sin ser atrapado gana, son tres partidas el que gana con mas puntos tiene que reclamar lo que sea al perdedor
+        </p>
+        <div class="mission-controls">
+          <button class="btn-primary" id="next-mission-btn">🎲 Girar otro reto</button>
+          <button class="btn-complete" id="complete-mission-btn">✅ Marcar como cumplido</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botones flotantes -->
+  <div class="floating-tools">
+    <button class="fab" id="hearts-burst-btn" title="Lluvia de corazones morados y celestes">💜</button>
+  </div>
+
+  <script>
+    // 1. CONTADOR DESDE EL 18 DE JULIO DE 2026
+    const startDate = new Date('2026-07-18T00:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = now - startDate;
+      if (diff < 0) diff = 0;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 2. CARTA INTERACTIVA (SIN EDICIÓN)
+    const toggleLetterBtn = document.getElementById('toggle-letter-btn');
+    const letterPaper = document.getElementById('letter-paper');
+
+    toggleLetterBtn.addEventListener('click', () => {
+      const isOpen = letterPaper.classList.toggle('open');
+      toggleLetterBtn.textContent = isOpen ? 'Cerrar carta 💌' : 'Abrir mi carta 💜';
+    });
+
+    // 3. GALERÍA POLAROID DE 5 FOTOS DE PEQUEÑO (FIJA)
+    // Pon aquí el nombre de tus archivos de imagen (ej: "foto1.jpg") junto al archivo HTML
+    const babyPhotos = [
+      { img: 'Breiner3.jpeg', caption: 'Mini tú, tan tierno 💜' },
+      { img: 'Breiner2.jpeg', caption: 'Esa carita hermosa muak' },
+      { img: 'Breiner4.jpeg', caption: 'Mi futuro guitarrista 🎸' },
+      { img: 'Breiner5.jpeg', caption: 'El niño más lindo y fuertototote 🕷️' },
+      { img: 'Breiner1.jpeg', caption: 'Mi niño todo lindo✨ y a su lado un tal justin kk' }
+    ];
+
+    const polaroidGrid = document.getElementById('polaroid-grid');
+    babyPhotos.forEach((photo, i) => {
+      const card = document.createElement('div');
+      card.className = 'polaroid';
+      card.innerHTML = `
+        <div class="photo-slot">
+          <img src="${photo.img}" alt="Foto ${i + 1}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>📷<br>Foto ${i + 1}</span>';">
+        </div>
+        <div class="polaroid-caption">${photo.caption}</div>
+      `;
+      polaroidGrid.appendChild(card);
+    });
+
+    // 4. PLAYLIST DEDICADA PARA ÉL (FIJA)
+    // Puedes agregar o cambiar aquí las canciones de tu playlist antes de enviárselo
+    const playlist = [
+      {
+        title: 'Bonsái (Tu canción para mí 🌱)',
+        note: 'La melodía que siempre me conecta con tu guitarra y tu voz.',
+        url: 'https://www.youtube.com/results?search_query=bonsai+cancion'
+      },
+      {
+        title: 'Sunflower — Post Malone & Swae Lee 🕷️',
+        note: 'Porque eres mi Spider-Man favorito en cualquier universo.',
+        url: 'https://www.youtube.com/results?search_query=sunflower+spiderman'
+      },
+      {
+        title: 'Playlist que me recuerda a ti :3 ',
+        note: 'Cada vez que la escucho estas musicas me recuerda a la armonia, el sentimiento y el amor que me das... muak te amo ',
+        url: 'https://youtu.be/bQd1bYbAYXA?si=zeXIripEKkKSQKN3'
+      },
+      {
+        title: 'Jeje esta musica si te gustara',
+        note: 'Me recuerda a ti siempre las musicas de este grupo, pero mas esta (aun qno soy fanatica pero siempre te tengo en la mente al escucharlos).',
+        url: 'https://youtu.be/BKcLMsCStms?si=SMSZsfh1m4_KPtGp'
+      },
+    ];
+
+    const playlistList = document.getElementById('playlist-list');
+    playlist.forEach((song) => {
+      const item = document.createElement('div');
+      item.className = 'song-item';
+      item.innerHTML = `
+        <div class="song-info">
+          <strong>🎶 ${song.title}</strong>
+          <span>${song.note}</span>
+        </div>
+        ${song.url ? `<a href="${song.url}" target="_blank" class="song-link">Escuchar ▶</a>` : ''}
+      `;
+      playlistList.appendChild(item);
+    });
+
+    // 5. RETOS Y MISIONES DE DÚOS EN ROBLOX (CON TUS RETOS ACTUALIZADOS)
+    const challenges = [
+      {
+        cat: 'violencia',
+        label: '⚔️ Distrito de Violencia',
+        title: 'Guardaespaldas Arácnido',
+        desc: 'En Distrito de Violencia tienes que protegerme durante 10 minutos seguidos sin que me derroten. Si lo consigues, eliges nuestra próxima peli.',
+        done: false
+      },
+      {
+        cat: 'violencia',
+        label: '⚔️ Distrito de Violencia',
+        title: 'Ganar con Killer',
+        desc: 'Tienes que pedirle a Justin que dia cualquier numero del 1 al 10 y yo te dire que haras jejeje',
+        done: false
+      },
+      {
+        cat: 'violencia',
+        label: '⚔️ Distrito de Violencia',
+        title: 'Escondidas',
+        desc: 'El que dura mas tiempo sin ser atrapado gana, son tres partidas el que gana con mas puntos tiene que reclamar lo que sea al perdedor',
+        done: false
+      },
+      {
+        cat: 'violencia',
+        label: '⚔️ Distrito de Violencia',
+        title: 'Counters jeje',
+        desc: 'El que pega mas de 5 veces countes gana, el perdedor tiene que hacer caso al ganador por unos 30 minutos.',
+        done: false
+      },
+      {
+        cat: 'violencia',
+        label: '⚔️ Distrito de Violencia',
+        title: 'Usar Pasivas cooperativas',
+        desc: 'Buscar pasivas que sean cooperativas y ganar las 2 partidas con pistola o linterna',
+        done: false
+      },
+      {
+        cat: 'violencia',
+        label: '⚔️ Distrito de Violencia',
+        title: 'Dúo Imparable en el Distrito',
+        desc: 'Usar adrenalina en 3 partidas y tenemos que ganar',
+        done: false
+      },
+      {
+        cat: 'supervivencia',
+        label: '🏕️ Supervivencia',
+        title: 'Refugio para Dos',
+        desc: 'Entramos a un juego de supervivencia y construimos juntos nuestra base en tonos morado y celeste antes de que caiga la noche.',
+        done: false
+      },
+      {
+        cat: 'supervivencia',
+        label: '🏕️ Supervivencia',
+        title: 'Noche Extrema sin Rendirse',
+        desc: 'Sobrevivimos juntos a una ronda completa de desastres o monstruos compartiendo todos los recursos.',
+        done: false
+      },
+      {
+        cat: 'duos',
+        label: '🏆 Competencia & Dúos',
+        title: 'El que Pierde Canta o Toca Guitarra',
+        desc: 'Jugamos un 1v1 o carrera de obstáculos: quien pierda le dedica una estrofa cantada o tocada en guitarra al otro.',
+        done: false
+      },
+      {
+        cat: 'duos',
+        label: '🏆 Competencia & Dúos',
+        title: 'Sincronía Total',
+        desc: 'Superamos un obby para 2 jugadores sin enojarnos y celebramos con captura de pantalla juntos.',
+        done: false
+      }
+    ];
+
+    let currentFilter = 'todos';
+    let currentIndex = 0;
+
+    const missionCategory = document.getElementById('mission-category');
+    const missionTitle = document.getElementById('mission-title');
+    const missionDesc = document.getElementById('mission-desc');
+    const completeBtn = document.getElementById('complete-mission-btn');
+
+    function getFilteredChallenges() {
+      if (currentFilter === 'todos') return challenges;
+      return challenges.filter(c => c.cat === currentFilter);
+    }
+
+    function showChallenge() {
+      const list = getFilteredChallenges();
+      if (!list.length) return;
+      if (currentIndex >= list.length) currentIndex = 0;
+      const item = list[currentIndex];
+      missionCategory.textContent = item.label;
+      missionTitle.textContent = item.title;
+      missionDesc.textContent = item.desc;
+      completeBtn.classList.toggle('done', item.done);
+      completeBtn.textContent = item.done ? '🎉 ¡Reto Completado!' : '✅ Marcar como cumplido';
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.cat;
+        currentIndex = 0;
+        showChallenge();
+      });
+    });
+
+    document.getElementById('next-mission-btn').addEventListener('click', () => {
+      const list = getFilteredChallenges();
+      currentIndex = (currentIndex + 1) % list.length;
+      showChallenge();
+    });
+
+    completeBtn.addEventListener('click', () => {
+      const list = getFilteredChallenges();
+      const item = list[currentIndex];
+      item.done = !item.done;
+      showChallenge();
+      if (item.done) spawnBurst(14);
+    });
+
+    showChallenge();
+
+    // 6. PARTÍCULAS FLOTANTES (CORAZONES MORADOS, CELESTES Y ARAÑITAS)
+    const particlesContainer = document.getElementById('particles-container');
+    const icons = ['💜', '🩵', '🤍', '🕷️', '✨', '🎸'];
+
+    function createParticle() {
+      const el = document.createElement('div');
+      el.className = 'particle';
+      el.textContent = icons[Math.floor(Math.random() * icons.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (14 + Math.random() * 14) + 'px';
+      el.style.animationDuration = (7 + Math.random() * 6) + 's';
+      particlesContainer.appendChild(el);
+      setTimeout(() => el.remove(), 13000);
+    }
+
+    function spawnBurst(count = 15) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(createParticle, i * 90);
+      }
+    }
+
+    setInterval(createParticle, 1300);
+    document.getElementById('hearts-burst-btn').addEventListener('click', () => spawnBurst(18));
+  </script>
+</body>
+</html>
